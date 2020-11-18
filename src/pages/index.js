@@ -28,8 +28,8 @@ const index = ({ initLocations }) => {
           <TableHead>
             <TableRow>
               <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
+              <TableCell>Club Name</TableCell>
+              <TableCell>Club Id</TableCell>
               <TableCell>{dateStrings[0]}</TableCell>
               <TableCell>{dateStrings[1]}</TableCell>
               <TableCell>{dateStrings[2]}</TableCell>
