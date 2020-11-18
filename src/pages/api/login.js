@@ -6,7 +6,7 @@ export default async (req, res) => {
   const { login, passwordParameter } = JSON.parse(body)
   switch (method) {
     case 'POST':
-      console.log(`Logging in user ${login}`, typeof body)
+      console.log(`Logging in user ${login}`)
       const data = new FormData()
       data.append('login', login)
       data.append('passwordParameter', passwordParameter)
