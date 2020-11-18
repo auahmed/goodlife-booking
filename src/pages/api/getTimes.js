@@ -1,15 +1,14 @@
 import axios from 'axios'
 
 export default async (req, res) => {
-  const { method, query: { clubId } } = req
+  const { method, query: { clubId, date } } = req
   switch (method) {
     case 'GET':
       console.log(`Getting club times for club ${clubId}`)
       try {
-        const date = new Date()
         const resp = await axios({
           method: 'get',
-          url: `https://www.goodlifefitness.com/content/goodlife/en/book-workout/jcr:content/root/responsivegrid/workoutbooking.GetWorkoutSlots.${clubId}.${date.toISOString().split('T')[0]}.json`
+          url: `https://www.goodlifefitness.com/content/goodlife/en/book-workout/jcr:content/root/responsivegrid/workoutbooking.GetWorkoutSlots.${clubId}.${date}.json`
         })
         console.log(`Got club times for club ${clubId} successfully`)
         return res.json(resp.data)

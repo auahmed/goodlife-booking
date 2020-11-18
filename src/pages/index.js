@@ -9,6 +9,7 @@ import {
   Paper
 } from '@material-ui/core'
 
+import config from '../config'
 import initLocationsFile from '../utils/locations'
 
 const index = ({ initLocations }) => {
@@ -84,11 +85,10 @@ const index = ({ initLocations }) => {
 }
 
 export const getServerSideProps = async ({ req }) => {
-  const baseUrl = 'http://localhost:3000'
   const initLocations = []
   let i = 0
   for (i; i < initLocationsFile.length; i += 1) {
-    const locationTimes = await fetch(baseUrl + `/api/getTimes?clubId=${initLocationsFile[i].ClubId}`)
+    const locationTimes = await fetch(config.host + `/api/getTimes?clubId=${initLocationsFile[i].ClubId}&date=2020-11-18`)
     const data = await locationTimes.json()
     initLocations.push({
       ...initLocationsFile[i],
