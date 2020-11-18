@@ -85,10 +85,11 @@ const index = ({ initLocations }) => {
 }
 
 export const getServerSideProps = async ({ req }) => {
+  const date = new Date()
   const initLocations = []
   let i = 0
   for (i; i < initLocationsFile.length; i += 1) {
-    const locationTimes = await fetch(config.host + `/api/getTimes?clubId=${initLocationsFile[i].ClubId}&date=2020-11-18`)
+    const locationTimes = await fetch(config.host + `/api/getTimes?clubId=${initLocationsFile[i].ClubId}&date=${date.toISOString().split('T')[0]}`)
     const data = await locationTimes.json()
     initLocations.push({
       ...initLocationsFile[i],
