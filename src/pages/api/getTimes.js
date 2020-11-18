@@ -6,9 +6,10 @@ export default async (req, res) => {
     case 'GET':
       console.log(`Getting club times for club ${clubId}`)
       try {
+        const date = new Date()
         const resp = await axios({
           method: 'get',
-          url: `https://www.goodlifefitness.com/content/goodlife/en/book-workout/jcr:content/root/responsivegrid/workoutbooking.GetWorkoutSlots.${clubId}.2020-11-18.json`
+          url: `https://www.goodlifefitness.com/content/goodlife/en/book-workout/jcr:content/root/responsivegrid/workoutbooking.GetWorkoutSlots.${clubId}.${date.toISOString().split('T')[0]}.json`
         })
         console.log(`Got club times for club ${clubId} successfully`)
         return res.json(resp.data)
