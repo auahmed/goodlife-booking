@@ -12,10 +12,9 @@ import config from '../config'
 import initLocationsFile from '../utils/locations'
 
 const index = ({ initLocations }) => {
-  const { user, userWorkouts, logout } = useUser()
+  const { user, logout } = useUser()
   const [locations, setLocations] = useState(initLocations)
 
-  console.log('### userWorkouts', userWorkouts)
   return (
     <Container>
       {

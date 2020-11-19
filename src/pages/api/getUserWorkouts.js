@@ -14,7 +14,23 @@ export default async (req, res) => {
           }
         })
         console.log(`Got user workout schedule successfully`)
-        return res.json(resp.data)
+        if (resp.data.map.statusCode === 200) {
+          const newResponse = {
+            map: {
+              statusCode: resp.data.map.statusCode,
+              response: []
+            }
+          }
+          Object.keys(resp.data.map.response).forEach((workout) => {
+            newResponse.map.response.push({
+              ...resp.data.map.response[workout],
+              date: resp.data.map.response[workout].startAt.split('T')[0]
+            })
+          })
+          return res.json(newResponse)
+        } else {
+          return res.json(resp.data)
+        }
       } catch (err) {
         console.error(`Error - getting user workout schedule unsuccessful. ${JSON.stringify(err.response.data)}`)
         return res.status(err.response.status).send(err.response.data)
