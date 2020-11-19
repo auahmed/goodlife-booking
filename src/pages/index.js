@@ -14,8 +14,10 @@ import initLocationsFile from '../utils/locations'
 const index = ({ initLocations }) => {
   const { user, date, setDate, logout } = useUser()
   const [locations, setLocations] = useState(initLocations)
+  const [loading, setLoading] = useState(false)
 
   const handleRefreshLocationTimes = async () => {
+    setLoading(true)
     const newLocations = []
     let i = 0
     for (i; i < initLocationsFile.length; i += 1) {
@@ -27,6 +29,7 @@ const index = ({ initLocations }) => {
       })
     }
     setLocations(newLocations)
+    setLoading(false)
   }
 
   const handlePreviousWeek = async () => {
@@ -57,13 +60,13 @@ const index = ({ initLocations }) => {
           )
           : <Login />
       }
-      <Button variant='contained' onClick={() => handlePreviousWeek()}>
+      <Button disabled={loading} variant='contained' onClick={() => handlePreviousWeek()}>
         Previous Week
       </Button>
-      <Button variant='contained' onClick={() => handleRefreshLocationTimes()}>
+      <Button disabled={loading} variant='contained' onClick={() => handleRefreshLocationTimes()}>
         Refresh Table
       </Button>
-      <Button variant='contained' onClick={() => handleNextWeek()}>
+      <Button disabled={loading} variant='contained' onClick={() => handleNextWeek()}>
         Next Week
       </Button>
       <TimeTable locations={locations} />
