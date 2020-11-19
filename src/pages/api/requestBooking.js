@@ -2,7 +2,7 @@ import axios from 'axios'
 import FormData from 'form-data'
 
 export default async (req, res) => {
-  const { method, body } = req
+  const { method, body, headers: { securelogintoken } } = req
   const { clubId, timeSlotId } = JSON.parse(body)
   switch (method) {
     case 'POST':
@@ -16,7 +16,8 @@ export default async (req, res) => {
           method: 'post',
           url: 'https://www.goodlifefitness.com/content/goodlife/en/book-workout/jcr:content/root/responsivegrid/workoutbooking.CreateWorkoutBooking.json',
           headers: {
-            ...data.getHeaders()
+            ...data.getHeaders(),
+            Cookie: `secureLoginToken=${securelogintoken}`
           },
           data: data
         })

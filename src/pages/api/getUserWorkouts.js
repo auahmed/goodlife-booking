@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export default async (req, res) => {
-  const { method, query: { date }, headers, headers: { securelogintoken } } = req
+  const { method, query: { date }, headers: { securelogintoken } } = req
   switch (method) {
     case 'GET':
       console.log('Getting user workout schedule with', securelogintoken)

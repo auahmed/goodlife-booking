@@ -10,13 +10,38 @@ import {
 } from '@material-ui/core'
 
 import { useUser } from '../context/userContext'
+import config from '../config'
 
 const TimeTable = ({ locations }) => {
-  const { userWorkouts } = useUser()
+  const { user, userWorkouts, setUserWorkouts, date: userDate } = useUser()
   const dateStrings = []
   for (let i = 0; i < locations[0].data.map.response.length; i += 1) {
     const date = new Date(locations[0].data.map.response[i].weekday)
     dateStrings.push(date.toDateString())
+  }
+
+  const handleBooking = async (event, info) => {
+    event.preventDefault()
+    if (!user) {
+      alert('Sign in to book timeslot')
+      return
+    }
+
+    try {
+      const bookingResp = await fetch(`${config.host}/api/requestBooking`, { method: 'POST', body: JSON.stringify({ clubId: info.clubId, timeSlotId: info.timeSlotId }), headers: { secureLoginToken: user.secureLoginToken } })
+      const bookingRespJson = await bookingResp.json()
+      if (!bookingResp.ok) {
+        alert('ERROR - (not ok) ' + bookingRespJson.map.response.message)
+        return
+      }
+      alert('SUCCESS - booked successfully')
+      console.log('Booked successfully:', bookingRespJson)
+      const userResp = await fetch(`${config.host}/api/getUserWorkouts?date=${userDate}`, { headers: { secureLoginToken: user.secureLoginToken } })
+      const userRespJson = await userResp.json()
+      setUserWorkouts(userRespJson)
+    } catch (err) {
+      alert('ERROR - (catch) ' + err.message)
+    }
   }
 
   const MultiTableCell = ({ available, booked }) => {
@@ -26,10 +51,10 @@ const TimeTable = ({ locations }) => {
       <TableCell align="left">
         {empty && '-'}
         {
-          available.map(element => <span className='available'>{element}</span>)
+          available.map(element => <div className='available' onClick={e => handleBooking(e, element)}>{element.timeString}</div>)
         }
         {
-          booked.map(element => <span className='booked'>{element}</span>)
+          booked.map(element => <div className='booked'>{element}</div>)
         }
       </TableCell>
     )
@@ -88,7 +113,11 @@ const TimeTable = ({ locations }) => {
                     const h = H % 12 || 12
                     const ampm = (H < 12 || H === 24) ? "AM" : "PM"
                     timeString = h + timeString.substr(2, 3) + ampm
-                    times[i].available.push(timeString)
+                    times[i].available.push({
+                      timeString,
+                      timeSlotId: locDate.workouts[j].identifier,
+                      clubId: locDate.workouts[j].clubId
+                    })
                   }
                 }
               }

@@ -15,7 +15,12 @@ a {
   box-sizing: border-box;
 }
 
+.timetable .club-row .available {
+  cursor: pointer;
+}
+
 .timetable .club-row .booked {
+  cursor: pointer;
   color: green;
   font-weight: bold;
 }
