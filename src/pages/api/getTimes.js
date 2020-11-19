@@ -4,7 +4,7 @@ export default async (req, res) => {
   const { method, query: { clubId, date } } = req
   switch (method) {
     case 'GET':
-      console.log(`Getting club times for club ${clubId}`)
+      console.log(`Getting club times for club ${clubId} from ${date}`)
       try {
         const resp = await axios({
           method: 'get',

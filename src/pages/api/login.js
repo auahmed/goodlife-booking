@@ -31,7 +31,10 @@ export default async (req, res) => {
             break
           }
         }
-        return res.json({ secureLoginToken })
+        return res.json({
+          ...resp.data.map.response,
+          secureLoginToken
+        })
       } catch (err) {
         console.error(`Error - logging in user ${login} unsuccessful. ${JSON.stringify(err.response.data)}`)
         return res.status(err.response.status).send(err.response.data)

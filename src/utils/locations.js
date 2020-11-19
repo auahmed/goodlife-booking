@@ -1,6 +1,6 @@
 const locations = [
   {
-    ClubName: 'Mississauga Heartland Town Centre',
+    ClubName: 'Mississauga Heartland Town Centre (6 min)',
     Address: {
       ProvinceLong: 'Ontario',
       Address2: '',
@@ -14,7 +14,7 @@ const locations = [
     Gender: 'Coed'
   },
   {
-    ClubName: 'Mississauga Square One',
+    ClubName: 'Mississauga Square One (8 min)',
     Address: {
       ProvinceLong: 'Ontario',
       Address2: 'Square One Mall',
@@ -28,7 +28,7 @@ const locations = [
     Gender: 'Coed'
   },
   {
-    ClubName: 'Mississauga South Common Centre',
+    ClubName: 'Mississauga South Common Centre (10 min)',
     Address: {
       ProvinceLong: 'Ontario',
       Address2: 'Unit 18',
@@ -42,7 +42,7 @@ const locations = [
     Gender: 'Coed'
   },
   {
-    ClubName: 'Mississauga Meadowvale Town Centre',
+    ClubName: 'Mississauga Meadowvale Town Centre (14 min)',
     Address: {
       ProvinceLong: 'Ontario',
       Address2: '',
@@ -56,34 +56,20 @@ const locations = [
     Gender: 'Coed'
   },
   {
-    ClubName: 'Brampton Gateway',
+    ClubName: 'Oakville Place (14 min)',
     Address: {
       ProvinceLong: 'Ontario',
-      PostalCode: 'L6Y 1N7',
+      PostalCode: 'L6H 3H6',
       Country: 'CA',
-      Address1: '499 Main Street South',
-      City: 'Brampton',
+      Address1: '247-240 Leighland Ave',
+      City: 'Oakville',
       Province: 'ON'
     },
-    ClubId: 347,
-    Gender: "Coed / Women's"
-  },
-  {
-    ClubName: 'Etobicoke West Metro Centre',
-    Address: {
-      ProvinceLong: 'Ontario',
-      Address2: '',
-      PostalCode: 'M9C 5L5',
-      Country: 'CA',
-      Address1: '185 The West Mall',
-      City: 'Etobicoke',
-      Province: 'ON'
-    },
-    ClubId: 183,
+    ClubId: 351,
     Gender: 'Coed'
   },
   {
-    ClubName: 'Oakville Trafalgar Ridge Plaza',
+    ClubName: 'Oakville Trafalgar Ridge Plaza (15 min)',
     Address: {
       ProvinceLong: 'Ontario',
       Address2: '',
@@ -97,35 +83,7 @@ const locations = [
     Gender: 'Coed'
   },
   {
-    ClubName: 'Brampton Kingspoint Plaza',
-    Address: {
-      ProvinceLong: 'Ontario',
-      Address2: '',
-      PostalCode: 'L6V 4A4',
-      Country: 'CA',
-      Address1: '370 Main Street North',
-      City: 'Brampton',
-      Province: 'ON'
-    },
-    ClubId: 202,
-    Gender: "Coed / Women's"
-  },
-  {
-    ClubName: 'Etobicoke Bloor Islington Place',
-    Address: {
-      ProvinceLong: 'Ontario',
-      Address2: 'Centre Tower 2Nd Floor, Suite Mez 1',
-      PostalCode: 'M8X 2X3',
-      Country: 'CA',
-      Address1: '3280 Bloor Street West',
-      City: 'Etobicoke',
-      Province: 'ON'
-    },
-    ClubId: 189,
-    Gender: 'Coed'
-  },
-  {
-    ClubName: 'Brampton Bramalea City Centre',
+    ClubName: 'Brampton Bramalea City Centre (17 min)',
     Address: {
       ProvinceLong: 'Ontario',
       Address2: '',
@@ -139,57 +97,30 @@ const locations = [
     Gender: "Coed / Women's"
   },
   {
-    ClubName: 'Oakville Place',
+    ClubName: 'Brampton Gateway (18 min)',
     Address: {
       ProvinceLong: 'Ontario',
-      PostalCode: 'L6H 3H6',
+      PostalCode: 'L6Y 1N7',
       Country: 'CA',
-      Address1: '247-240 Leighland Ave',
-      City: 'Oakville',
-      Province: 'ON'
-    },
-    ClubId: 351,
-    Gender: 'Coed'
-  },
-  {
-    ClubName: 'Brampton Mclaughlin Corners West',
-    Address: {
-      ProvinceLong: 'Ontario',
-      Address2: '',
-      PostalCode: 'L7A 2X6',
-      Country: 'CA',
-      Address1: '10088 Mclaughlin Road N',
+      Address1: '499 Main Street South',
       City: 'Brampton',
       Province: 'ON'
     },
-    ClubId: 299,
+    ClubId: 347,
     Gender: "Coed / Women's"
   },
   {
-    ClubName: 'Milton Steeles And Thompson',
+    ClubName: 'Etobicoke West Metro Centre (18 min)',
     Address: {
       ProvinceLong: 'Ontario',
       Address2: '',
-      PostalCode: 'L9T 5H3',
+      PostalCode: 'M9C 5L5',
       Country: 'CA',
-      Address1: '855 Steeles Ave. E.',
-      City: 'Milton',
+      Address1: '185 The West Mall',
+      City: 'Etobicoke',
       Province: 'ON'
     },
-    ClubId: 48,
-    Gender: 'Coed'
-  },
-  {
-    ClubName: 'Brampton Woodhill',
-    Address: {
-      ProvinceLong: 'Ontario',
-      PostalCode: 'L6S 0C2',
-      Country: 'CA',
-      Address1: '9145 Airport Road',
-      City: 'Brampton',
-      Province: 'ON'
-    },
-    ClubId: 241,
+    ClubId: 183,
     Gender: 'Coed'
   }
 ]

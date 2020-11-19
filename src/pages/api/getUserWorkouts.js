@@ -1,16 +1,16 @@
 import axios from 'axios'
 
 export default async (req, res) => {
-  const { method, query: { date }, headers: { secureLoginToken } } = req
+  const { method, query: { date }, headers, headers: { securelogintoken } } = req
   switch (method) {
     case 'GET':
-      console.log('Getting user workout schedule')
+      console.log('Getting user workout schedule with', securelogintoken)
       try {
         const resp = await axios({
           method: 'get',
           url: `https://www.goodlifefitness.com/content/goodlife/en/member-details/jcr:content/root/responsivegrid/myaccount/myclasses/myworkouts.GetMemberWorkoutBookings.${date}.json`,
           headers: {
-            cookie: `secureLoginToken=${secureLoginToken}`
+            Cookie: `secureLoginToken=${securelogintoken}`
           }
         })
         console.log(`Got user workout schedule successfully`)

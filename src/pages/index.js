@@ -1,53 +1,35 @@
 import React, { useState } from 'react'
 import {
   Button,
-  Container,
-  TextField
+  Container
 } from '@material-ui/core'
 
+import { useUser } from '../context/userContext'
+import Login from '../components/Login'
 import TimeTable from '../components/TimeTable'
 
 import config from '../config'
 import initLocationsFile from '../utils/locations'
 
 const index = ({ initLocations }) => {
+  const { user, userWorkouts, logout } = useUser()
   const [locations, setLocations] = useState(initLocations)
-  const [secureLoginToken, setSecureLoginToken] = useState(null)
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [errorLogin, setErrorLogin] = useState(null)
-  const [loadingLogin, setLoadingLogin] = useState(false)
 
-  const handleLogin = async (event) => {
-    event.preventDefault()
-    setLoadingLogin(true)
-    setErrorLogin(null)
-    try {
-      const loginResp = await fetch(`${config.host}/api/login`, { method: 'POST', body: JSON.stringify({ login: email, passwordParameter: password }) })
-      const loginRespJson = await loginResp.json()
-      if (!loginResp.ok) {
-        setErrorLogin(loginRespJson.map.response.message)
-      } else {
-        setSecureLoginToken(loginRespJson.secureLoginToken)
-      }
-    } catch (err) {
-      setErrorLogin(err.message)
-    }
-    setLoadingLogin(false)
-  }
-
+  console.log('### userWorkouts', userWorkouts)
   return (
     <Container>
-      <section className='login'>
-        <form onSubmit={handleLogin}>
-          <TextField fullWidth required label='Email' type='email' value={email} onChange={e => setEmail(e.target.value)} autoComplete='username' />
-          <TextField fullWidth required label='Password' type='password' value={password} onChange={e => setPassword(e.target.value)} autoComplete='current-password' />
-          {errorLogin && <p>{errorLogin}</p>}
-          <Button variant='contained' disabled={loadingLogin} type='submit'>
-            Sign In
-          </Button>
-        </form>
-      </section>
+      {
+        user
+          ? (
+            <section className='logged-in'>
+              <p>Hello {user.FirstName}</p>
+              <Button variant='contained' onClick={() => logout()}>
+                Sign Out
+              </Button>
+            </section>
+          )
+          : <Login />
+      }
       <TimeTable locations={locations} />
     </Container>
   )
