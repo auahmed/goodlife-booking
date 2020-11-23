@@ -103,7 +103,8 @@ const TimeTable = ({ locations }) => {
                 }
 
                 for (let j = 0; j < locDate.workouts.length; j += 1) {
-                  if (locDate.workouts[j].availableSlots > 0 && locDate.workouts[j].gymArea === 'Gym Floor') {
+                  if ((locDate.workouts[j].availableSlots > 0 && locDate.workouts[j].gymArea === 'Gym Floor' && location.ClubId !== 171)
+                    || (locDate.workouts[j].availableSlots > 0 && locDate.workouts[j].gymArea === 'For Women' && location.ClubId === 171)) {
                     if (locDate.workouts[j].startAt.split('T')[1] === '00:00:00'
                       || locDate.workouts[j].startAt.split('T')[1] === '01:30:00') {
                       break;

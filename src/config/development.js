@@ -1,3 +1,3 @@
 module.exports = {
-  host: 'https://goodlife-booking-dot-tiqytech-inc.appspot.com'
+  host: 'http://localhost:3000'
 }
