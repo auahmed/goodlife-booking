@@ -21,7 +21,7 @@ const index = ({ initLocations }) => {
     const newLocations = []
     let i = 0
     for (i; i < initLocationsFile.length; i += 1) {
-      const locationTimes = await fetch(config.host + `/api/getTimes?clubId=${initLocationsFile[i].ClubId}&date=${date}`)
+      const locationTimes = await fetch(`/api/getTimes?clubId=${initLocationsFile[i].ClubId}&date=${date}`)
       const data = await locationTimes.json()
       newLocations.push({
         ...initLocationsFile[i],

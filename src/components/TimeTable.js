@@ -28,7 +28,7 @@ const TimeTable = ({ locations }) => {
     }
 
     try {
-      const bookingResp = await fetch(`${config.host}/api/requestBooking`, { method: 'POST', body: JSON.stringify({ clubId: info.clubId, timeSlotId: info.timeSlotId }), headers: { secureLoginToken: user.secureLoginToken } })
+      const bookingResp = await fetch(`/api/requestBooking`, { method: 'POST', body: JSON.stringify({ clubId: info.clubId, timeSlotId: info.timeSlotId }), headers: { secureLoginToken: user.secureLoginToken } })
       const bookingRespJson = await bookingResp.json()
       if (!bookingResp.ok) {
         alert('ERROR - (not ok) ' + bookingRespJson.map.response.message)
@@ -36,7 +36,7 @@ const TimeTable = ({ locations }) => {
       }
       alert('SUCCESS - booked successfully')
       console.log('Booked successfully:', bookingRespJson)
-      const userResp = await fetch(`${config.host}/api/getUserWorkouts?date=${userDate}`, { headers: { secureLoginToken: user.secureLoginToken } })
+      const userResp = await fetch(`/api/getUserWorkouts?date=${userDate}`, { headers: { secureLoginToken: user.secureLoginToken } })
       const userRespJson = await userResp.json()
       setUserWorkouts(userRespJson)
     } catch (err) {
@@ -51,10 +51,10 @@ const TimeTable = ({ locations }) => {
       <TableCell align="left">
         {empty && '-'}
         {
-          available.map(element => <div className='available' onClick={e => handleBooking(e, element)}>{element.timeString}</div>)
+          available.map(element => <div key={element.timeString} className='available' onClick={e => handleBooking(e, element)}>{element.timeString}</div>)
         }
         {
-          booked.map(element => <div className='booked'>{element}</div>)
+          booked.map(element => <div key={element} className='booked'>{element}</div>)
         }
       </TableCell>
     )

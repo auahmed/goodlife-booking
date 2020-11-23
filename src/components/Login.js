@@ -19,7 +19,7 @@ const Login = () => {
     setLoading(true)
     setError(null)
     try {
-      const loginResp = await fetch(`${config.host}/api/login`, { method: 'POST', body: JSON.stringify({ login: email, passwordParameter: password }) })
+      const loginResp = await fetch(`/api/login`, { method: 'POST', body: JSON.stringify({ login: email, passwordParameter: password }) })
       const loginRespJson = await loginResp.json()
       if (!loginResp.ok) {
         setError(loginRespJson.map.response.message)
@@ -27,7 +27,7 @@ const Login = () => {
         return
       }
       setUser(loginRespJson)
-      const userResp = await fetch(`${config.host}/api/getUserWorkouts?date=${date}`, { headers: { secureLoginToken: loginRespJson.secureLoginToken } })
+      const userResp = await fetch(`/api/getUserWorkouts?date=${date}`, { headers: { secureLoginToken: loginRespJson.secureLoginToken } })
       const userRespJson = await userResp.json()
       setUserWorkouts(userRespJson)
     } catch (err) {
