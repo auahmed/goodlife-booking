@@ -86,6 +86,24 @@ const TimeTable = ({ locations }) => {
               }
 
               const times = [{ available: [], booked: [] }, { available: [], booked: [] }, { available: [], booked: [] }, { available: [], booked: [] }, { available: [], booked: [] }, { available: [], booked: [] }, { available: [], booked: [] }]
+              if (Object.keys(location.data).length === 0) {
+                return (
+                  <TableRow key={location.ClubName} className='club-row'>
+                  <TableCell align="left">{'204'}</TableCell>
+                  <TableCell component="th" scope="row">
+                    {location.ClubName}
+                  </TableCell>
+                  <TableCell align="left">{location.ClubId}</TableCell>
+                  <MultiTableCell available={[]} booked={[]} />
+                  <MultiTableCell available={[]} booked={[]} />
+                  <MultiTableCell available={[]} booked={[]} />
+                  <MultiTableCell available={[]} booked={[]} />
+                  <MultiTableCell available={[]} booked={[]} />
+                  <MultiTableCell available={[]} booked={[]} />
+                  <MultiTableCell available={[]} booked={[]} />
+                </TableRow>
+                )
+              }
               for (let i = 0; i < location.data.map.response.length; i += 1) {
                 const locDate = location.data.map.response[i]
                 const date = location.data.map.response[i].weekday.split('T')[0]
